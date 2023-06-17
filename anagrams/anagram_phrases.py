@@ -6,9 +6,8 @@ from load_dictionary import load
 dictionary = '/usr/share/dict/words.txt'
 word_list = load(dictionary)
 word_list.extend(['a', 'i'])
-word_set = set(word_list)
 init_name = input("Enter a name: ").lower()
-
+word_set = set(word_list)
 
 def find_anagram_words(name, word_set):
     """Find words that can be formed using letters in the name"""
@@ -30,6 +29,7 @@ def find_anagram_words(name, word_set):
     print("Remaining letters = {}".format(name))
     print("Number of remaining letters = {}".format(len(name)))
     print("Number of remaining (real word) anagrams = {}".format(len(anagram_words)))
+    return set(anagram_words)
     
 
 def process_choice(name):
@@ -56,6 +56,8 @@ def process_choice(name):
         return choice, name
 
 def main():
+    global word_set
+    word_set = set(word_list)
     name = ''.join(filter(lambda x: x not in {' ', '-'}, init_name))
     limit = len(name)
     print(limit)
@@ -64,7 +66,7 @@ def main():
     while True:
         temp_phrase = phrase.replace(' ', '')
         if len(temp_phrase) < limit:
-            find_anagram_words(name, word_set)
+            word_set = find_anagram_words(name, word_set)
             
             print(f'Current phrase: {phrase}')
 
