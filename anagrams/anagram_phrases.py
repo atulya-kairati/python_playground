@@ -35,11 +35,11 @@ def find_anagram_words(name, word_set):
 def process_choice(name):
     '''Check user choice validity and return user choice and leftover letters'''
     while True:
-        choice = input('\nEnter the chosen word or s to start over and q to quit: ').lower() 
+        choice = input('\nEnter the chosen word or 0 to start over and 1 to quit: ').lower() 
 
-        if choice == 's':
+        if choice == '0':
             main()
-        elif choice == 'q':
+        elif choice == '1':
             sys.exit()
         else:
             in_name = all(map(lambda x: x in name, choice))
